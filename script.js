@@ -3,6 +3,7 @@ const tattooCards = document.querySelectorAll("[data-lightbox-title]");
 const tattooModal = document.querySelector("[data-tattoo-modal]");
 const projectModal = document.querySelector("[data-project-modal]");
 const closeButtons = document.querySelectorAll("[data-close-modal]");
+const heroCharacter = document.querySelector(".hero-character");
 
 const projectData = {
   art: {
@@ -31,6 +32,17 @@ const projectData = {
 const syncHeader = () => {
   header.classList.toggle("is-scrolled", window.scrollY > 20);
 };
+
+if (heroCharacter) {
+  heroCharacter.addEventListener("load", () => {
+    heroCharacter.classList.add("is-loaded");
+    heroCharacter.classList.remove("is-missing");
+  });
+
+  heroCharacter.addEventListener("error", () => {
+    heroCharacter.classList.add("is-missing");
+  });
+}
 
 const openModal = (modal) => {
   modal.classList.add("is-open");
