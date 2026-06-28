@@ -327,6 +327,10 @@ p {
   display: none;
 }
 
+.hero-figure.has-character .character-placeholder {
+  display: none;
+}
+
 .character-placeholder {
   position: absolute;
   right: 13%;

@@ -46,14 +46,24 @@ const syncHeader = () => {
 };
 
 if (heroCharacter) {
-  heroCharacter.addEventListener("load", () => {
+  const markHeroCharacterLoaded = () => {
     heroCharacter.classList.add("is-loaded");
     heroCharacter.classList.remove("is-missing");
+    heroCharacter.closest(".hero-figure")?.classList.add("has-character");
+  };
+
+  heroCharacter.addEventListener("load", () => {
+    markHeroCharacterLoaded();
   });
 
   heroCharacter.addEventListener("error", () => {
     heroCharacter.classList.add("is-missing");
+    heroCharacter.closest(".hero-figure")?.classList.remove("has-character");
   });
+
+  if (heroCharacter.complete && heroCharacter.naturalWidth > 0) {
+    markHeroCharacterLoaded();
+  }
 }
 
 const openModal = (modal) => {
