@@ -1,5 +1,5 @@
 const header = document.querySelector("[data-header]");
-const tattooCards = document.querySelectorAll("[data-lightbox-title]");
+const tattooCards = document.querySelectorAll(".gallery-tattoo .work-card");
 const tattooModal = document.querySelector("[data-tattoo-modal]");
 const projectModal = document.querySelector("[data-project-modal]");
 const closeButtons = document.querySelectorAll("[data-close-modal]");
@@ -10,7 +10,7 @@ const projectData = {
     label: "Art / Digital image",
     title: "Obrazy cyfrowe",
     description:
-      "Miejsce na serie ilustracji, okładki, plakaty i bardziej artystyczne rzeczy. Ten widok może później dostać konkretne mockupy, detale procesu i finalne eksporty.",
+      "ilustracji, okładki, plakaty i bardziej artystyczne kwestie",
     images: [
       "assets/images/graphics/art/B4752062-8412-448F-9ACA-CE0938BA8066.PNG",
       "assets/images/graphics/art/B4752062-8412-448F-9ACA-CE0938BA8066.PNG",
@@ -21,7 +21,7 @@ const projectData = {
     label: "Brand / Utility graphics",
     title: "Grafika użytkowa",
     description:
-      "Układ pod case brandingowy: jeden mocny obraz główny, dwa detale obok i opis pod spodem. Idealne na logo, plakat, key visual, social pack albo całą mini-identyfikację.",
+      "Branding dla LAB5, logotyp, identyfikacja wizualna, materiały promocyjne",
     images: [
       "assets/images/graphics/branding/Zrzut_ekranu_2026-03-29_o_22.11.16.png",
       "assets/images/graphics/branding/IMG_9831.jpg",
@@ -73,8 +73,6 @@ const closeModal = () => {
 tattooCards.forEach((card) => {
   card.addEventListener("click", () => {
     const visual = tattooModal.querySelector("[data-modal-visual]");
-    const title = tattooModal.querySelector("[data-modal-title]");
-    const meta = tattooModal.querySelector("[data-modal-meta]");
     const image = card.querySelector("img");
 
     visual.className = "modal-visual visual-ink";
@@ -83,14 +81,12 @@ tattooCards.forEach((card) => {
     if (card.dataset.lightboxSrc || image) {
       const modalImage = document.createElement("img");
       modalImage.src = card.dataset.lightboxSrc || image.src;
-      modalImage.alt = image?.alt || card.dataset.lightboxTitle;
+      modalImage.alt = image?.alt || "Tatuaż";
       visual.append(modalImage);
     } else {
       visual.classList.add(card.dataset.lightboxVisual);
     }
 
-    title.textContent = card.dataset.lightboxTitle;
-    meta.textContent = card.dataset.lightboxMeta;
     openModal(tattooModal);
   });
 });

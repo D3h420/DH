@@ -99,7 +99,6 @@ body.modal-open {
 .header-action,
 .site-nav a,
 .kicker,
-.work-meta span,
 .intro-item span,
 .service-tile span,
 .site-footer {
@@ -239,48 +238,35 @@ p {
   gap: 0.8rem;
 }
 
-.button {
-  display: inline-flex;
-  min-height: 2.9rem;
-  align-items: center;
-  justify-content: center;
-  border: 1px solid var(--line);
-  padding: 0.85rem 1.05rem;
-  background: rgba(245, 240, 232, 0.04);
-  color: var(--ink);
-  font: 700 0.82rem/1 "Archivo", system-ui, sans-serif;
-  letter-spacing: 0;
-  text-transform: uppercase;
-  cursor: pointer;
-  transition: transform 160ms ease, border-color 160ms ease, background 160ms ease;
-}
-
-.button:hover {
-  transform: translateY(-1px);
-  border-color: rgba(245, 240, 232, 0.38);
-  background: rgba(245, 240, 232, 0.1);
-}
-
-.button-primary {
-  background: var(--accent);
-  border-color: var(--accent);
-  color: #120d11;
-}
-
-.button-primary:hover {
-  background: var(--accent-hot);
-}
-
 .hero-contact {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, max-content));
-  gap: 0.8rem 1.2rem;
-  margin-top: 1rem;
+  display: flex;
+  margin-top: 1.15rem;
 }
 
 .hero-contact a {
   color: #d8d1c7;
-  font: 700 0.76rem/1 "Archivo", system-ui, sans-serif;
+  font: 700 0.82rem/1 "Archivo", system-ui, sans-serif;
+}
+
+.hero-social {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  width: max-content;
+  border: 1px solid rgba(244, 240, 234, 0.14);
+  border-radius: 999px;
+  padding: 0.64rem 0.82rem;
+  background: rgba(11, 10, 9, 0.44);
+}
+
+.hero-social svg {
+  width: 1.05rem;
+  height: 1.05rem;
+  fill: none;
+  stroke: var(--accent);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.8;
 }
 
 .hero-figure {
@@ -293,16 +279,16 @@ p {
 
 .magenta-glow {
   position: absolute;
-  right: 9%;
-  bottom: 22%;
-  width: min(28rem, 78%);
+  right: 6%;
+  bottom: 20%;
+  width: min(31rem, 84%);
   aspect-ratio: 1;
   border-radius: 48% 52% 46% 54% / 54% 44% 56% 46%;
   background:
-    radial-gradient(circle at 48% 45%, rgba(255, 91, 209, 0.98) 0 9%, rgba(255, 47, 179, 0.62) 26%, rgba(255, 47, 179, 0.18) 56%, transparent 74%);
-  filter: blur(19px);
+    radial-gradient(circle at 48% 45%, rgba(255, 74, 202, 0.9) 0 8%, rgba(255, 47, 179, 0.58) 25%, rgba(255, 47, 179, 0.2) 57%, transparent 76%);
+  filter: blur(24px);
   mix-blend-mode: screen;
-  animation: glowFloat 7s ease-in-out infinite, glowHue 4.8s ease-in-out infinite;
+  animation: glowFloat 6.2s ease-in-out infinite, glowHue 6.2s ease-in-out infinite;
 }
 
 .magenta-glow::before,
@@ -311,16 +297,16 @@ p {
   position: absolute;
   inset: 8%;
   border-radius: inherit;
-  background: radial-gradient(circle, rgba(255, 47, 179, 0.62), transparent 68%);
-  filter: blur(22px);
-  animation: glowBlob 5.8s ease-in-out infinite;
+  background: radial-gradient(circle, rgba(255, 47, 179, 0.48), transparent 68%);
+  filter: blur(28px);
+  animation: glowBlob 5.4s ease-in-out infinite;
 }
 
 .magenta-glow::after {
   inset: 18%;
-  background: radial-gradient(circle, rgba(255, 122, 219, 0.5), transparent 70%);
-  animation-duration: 4.4s;
-  animation-delay: -1.3s;
+  background: radial-gradient(circle, rgba(255, 122, 219, 0.42), transparent 70%);
+  animation-duration: 4.8s;
+  animation-delay: -1.2s;
 }
 
 .hero-character {
@@ -381,9 +367,9 @@ p {
   bottom: 1.8rem;
   z-index: 3;
   display: flex;
-  gap: 0.28rem;
+  gap: 0.34rem;
   max-width: calc(100% - 2rem);
-  padding: 0.34rem;
+  padding: 0.42rem;
   border: 1px solid rgba(244, 240, 234, 0.14);
   border-radius: 999px;
   background: rgba(11, 10, 9, 0.54);
@@ -391,17 +377,21 @@ p {
   transform: translateX(-50%);
 }
 
-.dock-item {
+.dock-item,
+.link-dock a {
   display: inline-flex;
-  min-height: 2.15rem;
+  min-height: 2.55rem;
   align-items: center;
   border-radius: 999px;
-  padding: 0.55rem 0.9rem;
+  padding: 0.7rem 1.08rem;
   color: var(--muted);
-  font: 700 0.72rem/1 "Archivo", system-ui, sans-serif;
+  font: 700 0.8rem/1 "Archivo", system-ui, sans-serif;
+  text-transform: none;
 }
 
-.dock-item.is-active {
+.dock-item.is-active,
+.link-dock a.is-active,
+.link-dock a:hover {
   background: var(--ink);
   color: #151311;
 }
@@ -410,44 +400,50 @@ p {
   0%,
   100% {
     border-radius: 48% 52% 46% 54% / 54% 44% 56% 46%;
-    opacity: 0.76;
-    transform: translate3d(-0.2rem, 0.15rem, 0) scale(0.92);
+    opacity: 0.68;
+    transform: translate3d(-1.7rem, 0.85rem, 0) scale(0.86);
   }
 
-  35% {
-    border-radius: 42% 58% 54% 46% / 45% 55% 45% 55%;
-    opacity: 1;
-    transform: translate3d(0.75rem, -0.65rem, 0) scale(1.07);
+  28% {
+    border-radius: 38% 62% 57% 43% / 44% 60% 40% 56%;
+    opacity: 0.73;
+    transform: translate3d(1.65rem, -1.25rem, 0) scale(1.13);
   }
 
-  68% {
-    border-radius: 58% 42% 48% 52% / 57% 42% 58% 43%;
-    opacity: 0.88;
-    transform: translate3d(-0.55rem, -0.2rem, 0) scale(0.98);
+  54% {
+    border-radius: 62% 38% 42% 58% / 39% 61% 47% 53%;
+    opacity: 0.7;
+    transform: translate3d(0.15rem, -2rem, 0) scale(0.96);
+  }
+
+  76% {
+    border-radius: 52% 48% 64% 36% / 58% 37% 63% 42%;
+    opacity: 0.71;
+    transform: translate3d(-1.2rem, -0.4rem, 0) scale(1.08);
   }
 }
 
 @keyframes glowHue {
   0%,
   100% {
-    filter: blur(19px) hue-rotate(0deg) saturate(1.1);
+    filter: blur(24px) hue-rotate(0deg) saturate(1.22) brightness(1);
   }
 
   50% {
-    filter: blur(22px) hue-rotate(-18deg) saturate(1.35);
+    filter: blur(27px) hue-rotate(-14deg) saturate(1.34) brightness(1.06);
   }
 }
 
 @keyframes glowBlob {
   0%,
   100% {
-    transform: translate3d(0, 0, 0) scale(0.9);
-    opacity: 0.52;
+    transform: translate3d(-0.55rem, 0.55rem, 0) scale(0.82);
+    opacity: 0.4;
   }
 
   50% {
-    transform: translate3d(0.7rem, -0.4rem, 0) scale(1.16);
-    opacity: 0.9;
+    transform: translate3d(1.3rem, -1.05rem, 0) scale(1.32);
+    opacity: 0.5;
   }
 }
 
@@ -606,17 +602,6 @@ p {
     #0c0b0a;
 }
 
-.work-meta {
-  position: absolute;
-  inset: auto 0 0;
-  padding: 1rem;
-  background: linear-gradient(0deg, rgba(8, 7, 7, 0.92), rgba(8, 7, 7, 0));
-}
-
-.work-meta h3 {
-  margin: 0.4rem 0 0;
-}
-
 .graphic-section {
   background:
     linear-gradient(135deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.016) 52%, rgba(255, 47, 179, 0.06)),
@@ -696,18 +681,51 @@ p {
     rgba(15, 14, 13, 0.72);
 }
 
-.about-strip h2 {
-  max-width: 27ch;
+.about-card {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  align-items: start;
+  padding: 0;
+}
+
+.about-copy {
+  display: grid;
+  gap: 0.8rem;
+  width: min(48rem, 100%);
+}
+
+.about-copy h2 {
   margin-bottom: 0;
-  font-size: clamp(1.9rem, 4.3vw, 4.2rem);
-  line-height: 1.03;
+  font-size: clamp(2.4rem, 5vw, 4.8rem);
+  line-height: 0.92;
+}
+
+.about-copy p {
+  max-width: 42rem;
+  margin-bottom: 0;
+  color: #d8d1c7;
+  font-size: clamp(1rem, 1.6vw, 1.2rem);
+}
+
+.link-dock {
+  width: max-content;
+  max-width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.34rem;
+  border: 1px solid rgba(244, 240, 234, 0.14);
+  border-radius: 999px;
+  padding: 0.42rem;
+  background: rgba(11, 10, 9, 0.42);
+  backdrop-filter: blur(14px);
 }
 
 .contact-section {
   display: grid;
-  grid-template-columns: minmax(0, 0.9fr) auto;
-  gap: 2rem;
-  align-items: end;
+  grid-template-columns: 1fr;
+  gap: 1.1rem;
+  align-items: start;
 }
 
 .contact-section h2 {
@@ -716,7 +734,7 @@ p {
 }
 
 .contact-actions {
-  justify-content: flex-end;
+  width: max-content;
 }
 
 .site-footer {
@@ -815,21 +833,6 @@ p {
   background: transparent;
 }
 
-.modal-caption {
-  position: absolute;
-  left: 1rem;
-  bottom: 1rem;
-  z-index: 3;
-  display: grid;
-  gap: 0.2rem;
-  border: 1px solid rgba(244, 240, 234, 0.12);
-  border-radius: 999px;
-  padding: 0.55rem 0.8rem;
-  background: rgba(8, 8, 7, 0.72);
-  backdrop-filter: blur(14px);
-}
-
-.modal-caption span,
 .project-copy span {
   color: var(--accent);
   font: 700 0.74rem/1 "Archivo", system-ui, sans-serif;
@@ -837,18 +840,9 @@ p {
   text-transform: uppercase;
 }
 
-.modal-caption h2,
 .project-copy h2 {
   margin: 0.7rem 0 0;
   font-size: clamp(2.2rem, 6vw, 5.2rem);
-}
-
-.tattoo-modal .modal-caption h2 {
-  display: none;
-}
-
-.tattoo-modal .modal-caption span {
-  color: var(--accent);
 }
 
 .project-modal {
@@ -1003,9 +997,14 @@ p {
   }
 
   .intro-band,
+  .about-card,
   .service-grid,
   .contact-section {
     grid-template-columns: 1fr;
+  }
+
+  .about-tags {
+    grid-column: auto;
   }
 
   .intro-item {
