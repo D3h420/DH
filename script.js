@@ -11,21 +11,33 @@ const projectData = {
     title: "Obrazy cyfrowe",
     description:
       "Miejsce na serie ilustracji, okładki, plakaty i bardziej artystyczne rzeczy. Ten widok może później dostać konkretne mockupy, detale procesu i finalne eksporty.",
-    classes: ["project-art-main", "project-art-one", "project-art-two"],
+    images: [
+      "assets/images/graphics/art/B4752062-8412-448F-9ACA-CE0938BA8066.PNG",
+      "assets/images/graphics/art/B4752062-8412-448F-9ACA-CE0938BA8066.PNG",
+      "assets/images/graphics/art/B4752062-8412-448F-9ACA-CE0938BA8066.PNG",
+    ],
   },
   brand: {
     label: "Brand / Utility graphics",
     title: "Grafika użytkowa",
     description:
       "Układ pod case brandingowy: jeden mocny obraz główny, dwa detale obok i opis pod spodem. Idealne na logo, plakat, key visual, social pack albo całą mini-identyfikację.",
-    classes: ["project-brand-main", "project-brand-one", "project-brand-two"],
+    images: [
+      "assets/images/graphics/branding/Zrzut_ekranu_2026-03-29_o_22.11.16.png",
+      "assets/images/graphics/branding/IMG_9831.jpg",
+      "assets/images/graphics/branding/logo3.png",
+    ],
   },
   web: {
     label: "Web / Templates",
     title: "Szablony stron",
     description:
       "Sekcja pod layouty www, landing page i elementy UI. Możesz pokazać pełny ekran projektu, dwa zbliżenia i krótko opisać dla kogo był robiony.",
-    classes: ["project-web-main", "project-web-one", "project-web-two"],
+    images: [
+      "assets/images/graphics/web/WarMachine.png",
+      "assets/images/graphics/web/WarMachine.png",
+      "assets/images/graphics/web/WarMachine.png",
+    ],
   },
 };
 
@@ -86,14 +98,14 @@ tattooCards.forEach((card) => {
 document.querySelectorAll("[data-project]").forEach((tile) => {
   tile.addEventListener("click", () => {
     const project = projectData[tile.dataset.project];
-    const [mainClass, sideOneClass, sideTwoClass] = project.classes;
+    const [mainImage, sideOneImage, sideTwoImage] = project.images;
 
     projectModal.querySelector("[data-project-label]").textContent = project.label;
     projectModal.querySelector("[data-project-title]").textContent = project.title;
     projectModal.querySelector("[data-project-description]").textContent = project.description;
-    projectModal.querySelector("[data-project-main]").className = `project-visual project-visual-main ${mainClass}`;
-    projectModal.querySelector("[data-project-side-one]").className = `project-visual project-visual-small ${sideOneClass}`;
-    projectModal.querySelector("[data-project-side-two]").className = `project-visual project-visual-small ${sideTwoClass}`;
+    projectModal.querySelector("[data-project-main]").innerHTML = `<img src="${mainImage}" alt="">`;
+    projectModal.querySelector("[data-project-side-one]").innerHTML = `<img src="${sideOneImage}" alt="">`;
+    projectModal.querySelector("[data-project-side-two]").innerHTML = `<img src="${sideTwoImage}" alt="">`;
     openModal(projectModal);
   });
 });
